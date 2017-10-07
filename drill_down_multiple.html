@@ -1,0 +1,76 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>highcharts drilldown multiple</title>
+	<script src="http://github.highcharts.com/highcharts.js"></script>
+	<script src="http://github.highcharts.com/master/modules/drilldown.js"></script>
+
+
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+</head>
+<body>
+	<script>
+$(function () {    
+
+    // Create the chart
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Basic drilldown'
+        },
+        xAxis: {
+            type: 'category'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                }
+            }
+        },
+
+        series: [{
+            name: 'Things',
+            colorByPoint: true,
+            data: [{
+                name: 'Animals',
+                y: 5,
+                drilldown: 'animals'
+            }]
+        }],
+        drilldown: {
+            series: [{
+                id: 'animals',
+                name: 'Animals',
+                data: [
+                    {name: 'Cats', 
+                     y: 4,
+                     drilldown: 'cats'},
+                    ['Dogs', 2],
+                    ['Cows', 1],
+                    ['Sheep', 2],
+                    ['Pigs', 1]
+                ]
+            }, {
+                
+                id:'cats',
+                data: [1,2,3] 
+            }]
+        }
+    })
+});
+</script>
+
+</body>
+</html>
