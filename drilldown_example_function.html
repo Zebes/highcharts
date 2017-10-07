@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+</head>
+<body>
+	<script type="text/javascript">
+	$(function() {
+  $('#container').highcharts({
+    chart: {
+      events: {
+        drilldown: function(e) {
+          var chart = this,
+            drilldowns = {
+              'drill1': {
+                type: 'column',
+                color: '#ED6C44',
+                name: 'Kolkata',
+                data: [{
+                  name: 'test1',
+                  y: 55.29
+                }, {
+                  name: 'test2',
+                  y: 59.76
+                }, {
+                  name: 'test3',
+                  y: 44.07
+                }, {
+                  name: 'test4',
+                  y: 97.58
+                }, {
+                  name: 'test5',
+                  y: 58.51
+                }]
+              },
+              'drill2': {
+                type: 'spline',
+                name: 'Kolkata',
+                color: '#4C4743',
+                data: [{
+                  name: 'test1',
+                  y: 53
+                }, {
+                  name: 'test2',
+                  y: 40.67
+                }, {
+                  name: 'test3',
+                  y: 43.5
+                }, {
+                  name: 'test4',
+                  y: 80.33
+                }, {
+                  name: 'test5',
+                  y: 50.33
+                }],
+                marker: {
+                  lineWidth: 2,
+                  lineColor: Highcharts.getOptions().colors[3],
+                  fillColor: 'white'
+                }
+              }
+            };
+          series = [drilldowns['drill1'], drilldowns['drill2']];
+          chart.addSingleSeriesAsDrilldown(e.point, series[0]);
+          chart.addSingleSeriesAsDrilldown(e.point, series[1]);
+          chart.applyDrilldown();
+        },
+      }
+    },
+    title: {
+      text: 'chart'
+    },
+    xAxis: {
+      type: 'category'
+    },
+    labels: {
+      items: [{
+        html: '',
+        style: {
+          left: '50px',
+          top: '18px',
+          color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+        }
+      }]
+    },
+    series: [{
+      name: 'Things',
+      type: 'column',
+      data: [{
+        name: 'Animals',
+        y: 5,
+        drilldown: true
+      }]
+    }],
+    drilldown: {
+      series: []
+    },
+    exporting: {
+      enabled: false
+    }
+  });
+});
+</script>
+
+</body>
+</html>

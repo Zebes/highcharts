@@ -1,76 +1,98 @@
-<!doctype html>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>highcharts drilldown multiple</title>
-	<script language="JavaScript" type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
-	<script language="JavaScript" type="text/javascript" src="https://code.highcharts.com/modules/drilldown.js"></script>
-
+<!--det står ikke at jquery må med for koden under, men det må den...-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 
 
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<script>
+$(function() {
 
+  // Create the chart
+  $('#container').highcharts({
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Basic drilldown'
+    },
+    xAxis: {
+      type: 'category'
+    },
+
+    legend: {
+      enabled: false
+    },
+
+    plotOptions: {
+      series: {
+        borderWidth: 0,
+        dataLabels: {
+          enabled: true,
+        }
+      }
+    },
+
+    series: [{
+      name: 'Things',
+      colorByPoint: true,
+      data: [{
+        name: 'Animals',
+        y: 5,
+        drilldown: 'animals'
+      }]
+    }],
+    drilldown: {
+      series: [{
+        id: 'animals',
+        name: 'Animals',
+        data: [{
+          name: 'Cats',
+          y: 4,
+          drilldown: 'cats'
+        }, {
+          name: 'Dogs',
+          y: 4,
+        }]
+      }, {
+        id: 'cats',
+        data: [{
+          name: 'persian',
+          y: 2,
+          drilldown: 'persian'
+        }, {
+          name: 'Maine coon',
+          y: 4,
+        }, {
+          name: 'Siamese',
+          y: 3,
+        }]
+      }, {
+        id: 'persian',
+        data: [{
+          name: 'one',
+          y: 1,
+        }, {
+          name: 'two',
+          y: 2,
+        }, {
+          name: 'three',
+          y: 3,
+        }]
+      }]
+    }
+  })
+});
+
+</script>
 </head>
 <body>
-	<script>
-$(function () {    
-
-    // Create the chart
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Basic drilldown'
-        },
-        xAxis: {
-            type: 'category'
-        },
-
-        legend: {
-            enabled: false
-        },
-
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                }
-            }
-        },
-
-        series: [{
-            name: 'Things',
-            colorByPoint: true,
-            data: [{
-                name: 'Animals',
-                y: 5,
-                drilldown: 'animals'
-            }]
-        }],
-        drilldown: {
-            series: [{
-                id: 'animals',
-                name: 'Animals',
-                data: [
-                    {name: 'Cats', 
-                     y: 4,
-                     drilldown: 'cats'},
-                    ['Dogs', 2],
-                    ['Cows', 1],
-                    ['Sheep', 2],
-                    ['Pigs', 1]
-                ]
-            }, {
-                
-                id:'cats',
-                data: [1,2,3] 
-            }]
-        }
-    })
-});
-</script>
+	
 
 </body>
 </html>
