@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Figur12 import næring & tid</title>
+	<!-- 1. Add these JavaScript inclusions in the head of your page -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+</head>
+<body>
+	<div id="container" style="width: 1200px; height: 800px; margin: 0 auto"></div>	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.get('eskport_cpa.csv', function(csv) {
+				$('#container').highcharts({
+					chart: {
+						type: 'column'
+					},
+					data: {
+						csv: csv
+					},
+					<!--series: [{stack:'male'},{stack:'male'},{stack:'female'},{stack:'female'},{stack:'unknown'}],-->
+					title: {
+						text: 'Import næring & tid'
+					},
+					yAxis: {
+						title: {
+							text: 'Millioner kroner'
+						}
+					}
+				});
+			});
+		});
+	</script>
+
+
+</body>
+</html>
