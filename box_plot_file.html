@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/highcharts-more.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -9,7 +10,9 @@
 	</head>
 	<body>
 	<script>
-	Highcharts.chart('container', {
+$.get('data.csv', function(csv) {
+    $('#container').highcharts({
+
 
     chart: {
         type: 'boxplot'
@@ -53,16 +56,11 @@
 
     series: [{
         name: 'Observations',
-        data: [
-            [760, 801, 848, 895, 965],
-            [733, 853, 939, 980, 1080],
-            [714, 762, 817, 870, 918],
-            [724, 802, 806, 871, 950],
-            [834, 836, 864, 882, 910]
-        ]
+        data: csv
     }]
-
+    });
 });
+
 </script>
 	</body>
 </html>
