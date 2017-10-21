@@ -20,6 +20,7 @@ $(document).ready(function() {
     $.getJSON('json_highcharts_ex.json', function(data) {
         options.series[0].data = data;
         var chart = new Highcharts.Chart(options);
+		console.log(data);
     });
 
 });
