@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+	</head>
+	<Body>
+	<script>
+$(document).ready(function() {
+
+    var options = {
+        chart: {
+            renderTo: 'container',
+            type: 'spline'
+        },
+        series: [{}]
+    };
+
+    $.getJSON('json_highcharts_ex.json', function(data) {
+        options.series[0].data = data;
+        var chart = new Highcharts.Chart(options);
+    });
+
+});
+	</script>
+	</body>
+</html>
