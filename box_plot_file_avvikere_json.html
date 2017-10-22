@@ -27,10 +27,11 @@ $.getJSON('box_plot_avvikere.json', function(csv) {
     },
 
     xAxis: {
-        categories: ['1', '2', '3', '4', '5'],
+        type: "category" //for å kunne benytte navnene fra array i fila
+		/*categories: ['1', '2', '3', '4', '5'],
         title: {
-            text: 'Experiment No.'
-        }
+            text: 'Strata ID'
+        }*/
     },
 
     yAxis: {
