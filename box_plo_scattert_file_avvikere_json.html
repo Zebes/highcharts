@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+	<div id="container" style="height: 800px; margin: auto; min-width: 1200px; max-width: 1200px"></div>
+	</head>
+	<body>
+	<script>
+$.getJSON('box_plot_avvikere.json', function(csv) {
+    $('#container').highcharts({
+
+
+    chart: {
+        type: 'boxplot'
+    },
+
+    title: {
+        text: 'Highcharts box plot styling'
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    xAxis: {
+        type: "category" //for å kunne benytte navnene fra array i fila
+		/*categories: ['1', '2', '3', '4', '5'],
+        title: {
+            text: 'Strata ID'
+        }*/
+    },
+
+    yAxis: {
+        title: {
+            text: 'Observations'
+        }
+    },
+
+    plotOptions: {
+        boxplot: {
+            fillColor: '#F0F0E0',
+            lineWidth: 2,
+            medianColor: '#0C5DA5',
+            medianWidth: 3,
+            stemColor: '#A63400',
+            stemDashStyle: 'dot',
+            stemWidth: 1,
+            whiskerColor: '#3D9200',
+            whiskerLength: '20%',
+            whiskerWidth: 3
+        }
+    },
+
+    series: [{
+        name: 'Observations',
+        data: csv
+    },
+	
+		{
+  name: 'Outlier',
+  color: Highcharts.getOptions().colors[0],
+  type: 'scatter',
+  data: [ // x, y positions where 0 is the first category
+    ["B, 1><2", 17000],
+    [4, 17000],
+    [4, 17000],
+    ["G, 2><2><0", 17000]
+  ]
+}
+	]
+	
+    });
+
+});
+
+</script>
+	</body>
+</html>
