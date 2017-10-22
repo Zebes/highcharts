@@ -69,10 +69,17 @@ $.getJSON('box_plot_avvikere.json', function(csv) {
     [4, 17000],
     [4, 17000],
     ["G, 2><2><0", 17000]
-  ]
-}
+  ],
+  point: 	{
+                events: {
+                    click: function () {
+                        location.href = 'https://www.vg.no'/*+this.options.key.slice(0,9)+'.html'*/
+                            ;
+										}
+						}
+			}
+		}
 	]
-	
     });
 
 });
