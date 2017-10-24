@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/javascript" src="http://www.intern.ssb.no/~thm/js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="http://www.intern.ssb.no/~thm/js/highcharts/highcharts_6_0_2/code/highcharts.js"></script>
+		<script type="text/javascript" src="http://www.intern.ssb.no/~thm/js/highcharts/highcharts_6_0_2/code/modules/data.js"></script>
+	    <div id="container" style="height: 800px; margin: auto; min-width: 1200px; max-width: 1200px"></div>*/
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+	</head>
+	<body>
+	<script>
+$.getJSON('box_plot_imp.json', function(csv) {
+    $('#container').highcharts({
+
+
+    chart: {
+        type: 'boxplot'
+    },
+
+    title: {
+        text: 'Highcharts box plot styling'
+    },
+
+    legend: {
+        enabled: false
+    },
+
+    xAxis: {
+        type: "category" //for å kunne benytte navnene fra array i fila
+		/*categories: ['1', '2', '3', '4', '5'],
+        title: {
+            text: 'Strata ID'
+        }*/
+    },
+
+    yAxis: {
+        title: {
+            text: 'Observations'
+        }
+    },
+
+    plotOptions: {
+        boxplot: {
+            fillColor: '#F0F0E0',
+            lineWidth: 2,
+            medianColor: '#0C5DA5',
+            medianWidth: 3,
+            stemColor: '#A63400',
+            stemDashStyle: 'dot',
+            stemWidth: 1,
+            whiskerColor: '#3D9200',
+            whiskerLength: '20%',
+            whiskerWidth: 3
+        }
+    },
+
+    series: [{
+        name: 'Observations',
+        data: csv
+    }]
+    });
+});
+
+</script>
+	</body>
+</html>
