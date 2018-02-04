@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Figur19</title>
+		
+		
+		<!-- 1. Add these JavaScript inclusions in the head of your page -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src = "https://code.highcharts.com/modules/data.js"></script> 
+		
+	</head>
+	<body>
+	<div id="container" style="width: 1200px; height: 800px; margin: 0 auto"></div>	
+    <script>
+		$(document).ready(function() {
+    var options = {
+    chart: {
+		renderTo:'container',
+        type: 'scatter',
+        zoomType: 'xy'
+    },
+
+    title: {
+        text: 'Scatterplot'
+    },
+    subtitle: {
+        text: 'Verdier'
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Verdi xAxis '
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+    },
+    yAxis: {
+        title: {
+            text: 'Verdi yAxis'
+        }
+    },
+    /*legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+        borderWidth: 1
+    },*/
+    series: [{}],
+      /*  series:[{}]
+,*/
+    plotOptions: {
+        scatter: {
+            marker: {
+                radius: 5,
+                states: {
+                    hover: {
+                        enabled: true,
+                        lineColor: 'rgb(100,100,100)'
+                    }
+                }
+            },
+            states: {
+                hover: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: 'Q3= {point.x} ,Q4= {point.y}'
+            }
+            },
+            series: {
+            cursor: 'pointer',
+            point: {
+                events: {
+                    click: function () {
+                        location.href = 'prefix'+this.options.name.slice(0,9)+'.html'
+                            ;
+                    }
+                }
+            }
+        }   
+    }
+    };
+    
+
+
+
+ $.getJSON('figur19_scatter.json', function(data) {
+    /*$.getJSON('s_a_g_enkel.json', function(data) {*/
+        options.series = data;
+        /*options.series= data;*/
+        console.log(data);
+        var chart = new Highcharts.Chart(options);
+    });
+});
+
+
+
+
+
+		</script>
+		
+				
+	</body>
+</html>
